@@ -37,14 +37,14 @@ select * from `dbt-tutorial.stripe.payment`;
 
 Click **Run**, then check for results from the queries. For example:
 
-Bigquery Query Results
-Bigquery Query Results
-Create new datasets from the BigQuery Console. For more information, refer to Create datasets in the Google Cloud docs. Datasets in BigQuery are equivalent to schemas in a traditional database. On the Create dataset page:
+<img src="images/GCP_dbt_2.png" alt="thecodemancer_" /><p align="center">Bigquery Query Results</p>
 
-Dataset ID — Enter a name that fits the purpose. This name is used like schema in fully qualified references to your database objects such as database.schema.table. As an example for this guide, create one for jaffle_shop and another one for stripe afterward.
-Data location — Leave it blank (the default). It determines the GCP location of where your data is stored. The current default location is the US multi-region. All tables within this dataset will share this location.
-Enable table expiration — Leave it unselected (the default). The default for the billing table expiration is 60 days. Because billing isn’t enabled for this project, GCP defaults to deprecating tables.
-Google-managed encryption key — This option is available under Advanced options. Allow Google to manage encryption (the default).
+Create new datasets from the BigQuery Console. Datasets in BigQuery are equivalent to schemas in a traditional database. On the **Create dataset** page:
+
+- **Dataset ID** — Enter a name that fits the purpose. This name is used like schema in fully qualified references to your database objects such as `database.schema.table`. As an example for this guide, create one for `jaffle_shop` and another one for `stripe` afterward.
+- **Data location** — Leave it blank (the default). It determines the GCP location of where your data is stored. The current default location is the US multi-region. All tables within this dataset will share this location.
+- **Enable table expiration** — Leave it unselected (the default). The default for the billing table expiration is 60 days. Because billing isn’t enabled for this project, GCP defaults to deprecating tables.
+- **Google-managed encryption key** — This option is available under **Advanced options**. Allow Google to manage encryption (the default).
 Bigquery Create Dataset ID
 Bigquery Create Dataset ID
 After you create the jaffle_shop dataset, create one for stripe with all the same values except for Dataset ID.
@@ -63,4 +63,6 @@ After you create the jaffle_shop dataset, create one for stripe with all the sam
 14. Commit your changes​
 15. Deploy dbt​
 
-<img src="images/GCP_dbt_1.png" />
+<img src="images/GCP_dbt_1.png" alt="thecodemancer_" />
+<img src="images/GCP_dbt_2.png" alt="thecodemancer_" /><p align="center">Bigquery Query Results</p>
+
