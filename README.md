@@ -69,17 +69,45 @@ In order to let dbt connect to your warehouse, you'll need to generate a keyfile
 
 3. Create a service account key for your new project from the <a href="https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts?supportedpurview=project">Service accounts page</a>. When downloading the JSON file, make sure to use a filename you can easily remember. For example, `dbt-user-creds.json`. For security reasons, dbt Labs recommends that you protect this JSON file like you would your identity credentials; for example, don't check the JSON file into your version control software.
 
-5. Connect dbt Cloud to BigQuery​​
-6. Set up a dbt Cloud managed repository​
-7. Initialize your dbt project​ and start developing​
-8. Build your first model​
-9. Change the way your model is materialized​
-10. Delete the example models​
-11. Build models on top of other models​
-12. Add tests to your models​
-13. Document your models​
-14. Commit your changes​
-15. Deploy dbt​
+## 5. Connect dbt Cloud to BigQuery​​
+
+1. Create a new project in <a href="https://cloud.getdbt.com/">dbt Cloud</a>. From **Account settings** (using the gear menu in the top right corner), click **+ New Project**.
+2. Enter a project name and click **Continue**.
+3. For the warehouse, click **BigQuery** then **Next** to set up your connection.
+
+<img src="images/GCP_dbt_4.png" alt="thecodemancer_" /><p align="center">Connecting dbt Cloud to BigQuery​​</p>
+<img src="images/GCP_dbt_5.png" alt="thecodemancer_" /><p align="center">Connecting dbt Cloud to BigQuery​​</p>
+
+
+4. Click **Upload a Service Account JSON File** in settings.
+5. Select the JSON file you downloaded and dbt Cloud will fill in all the necessary fields.
+6. Click **Test Connection**. This verifies that dbt Cloud can access your BigQuery account.
+7. Click **Next** if the test succeeded. If it failed, you might need to go back and regenerate your BigQuery credentials.
+
+## 6. Set up a dbt Cloud managed repository​
+
+When you develop in dbt Cloud, you can leverage <a href="https://docs.getdbt.com/docs/collaborate/git-version-control">Git</a> to version control your code.
+
+To connect to a repository, you can either set up a dbt Cloud-hosted < href"https://docs.getdbt.com/docs/collaborate/git/managed-repository">managed repository</a> or directly connect to a <a href"https://docs.getdbt.com/docs/cloud/git/connect-github">supported git provider</a>. Managed repositories are a great way to trial dbt without needing to create a new repository. In the long run, it's better to connect to a supported git provider to use features like automation and <a href="https://docs.getdbt.com/docs/deploy/continuous-integration">continuous integration</a>.
+
+To set up a managed repository:
+
+Under "Setup a repository", select **Managed**.
+Type a name for your repo such as bbaggins-dbt-quickstart
+Click **Create**. It will take a few seconds for your repository to be created and imported.
+Once you see the "Successfully imported repository," click **Continue**.
+
+
+
+## 7. Initialize your dbt project​ and start developing​
+## 8. Build your first model​
+## 9. Change the way your model is materialized​
+## 10. Delete the example models​
+## 11. Build models on top of other models​
+## 12. Add tests to your models​
+## 13. Document your models​
+## 14. Commit your changes​
+## 15. Deploy dbt​
 
 
 
