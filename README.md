@@ -100,6 +100,18 @@ To set up a managed repository:
 
 
 ## 7. Initialize your dbt project​ and start developing​
+
+Now that you have a repository configured, you can initialize your project and start development in dbt Cloud:
+
+1. Click **Start developing in the IDE**. It might take a few minutes for your project to spin up for the first time as it establishes your git connection, clones your repo, and tests the connection to the warehouse.
+2. Above the file tree to the left, click **Initialize dbt project**. This builds out your folder structure with example models.
+3. Make your initial commit by clicking **Commit and sync**. Use the commit message `initial commit` and click **Commit**. This creates the first commit to your managed repo and allows you to open a branch where you can add new dbt code.
+4. You can now directly query data from your warehouse and execute `dbt run`. You can try this out now:
+   - Click **+ Create new file**, add this query to the new file, and click **Save as** to save the new file:
+   - `select * from `dbt-tutorial.jaffle_shop.customers``
+
+In the command line bar at the bottom, enter `dbt run` and click *Enter*. You should see a `dbt run succeeded message`.
+
 ## 8. Build your first model​
 ## 9. Change the way your model is materialized​
 ## 10. Delete the example models​
