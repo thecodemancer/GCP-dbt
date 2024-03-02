@@ -108,11 +108,79 @@ Now that you have a repository configured, you can initialize your project and s
 3. Make your initial commit by clicking **Commit and sync**. Use the commit message `initial commit` and click **Commit**. This creates the first commit to your managed repo and allows you to open a branch where you can add new dbt code.
 4. You can now directly query data from your warehouse and execute `dbt run`. You can try this out now:
    - Click **+ Create new file**, add this query to the new file, and click **Save as** to save the new file:
-   - `select * from \`dbt-tutorial.jaffle_shop.customers\``
+   - ```
+     select * from `dbt-tutorial.jaffle_shop.customers`
+     ```
 
 In the command line bar at the bottom, enter `dbt run` and click *Enter*. You should see a `dbt run succeeded message`.
 
 ## 8. Build your first model​
+
+1. Under **Version Control** on the left, click **Create branch**. You can name it `add-customers-model`. You need to create a new branch since the main branch is set to read-only mode.
+2. Click the ... next to the `models` directory, then select **Create file**.
+3. Name the file `customers.sql`, then click **Create**.
+4. Copy the following query into the file and click **Save**.
+```
+with customers as (
+
+    select
+        id as customer_id,
+        first_name,
+        last_name
+
+    from `dbt-tutorial`.jaffle_shop.customers
+
+),
+
+orders as (
+
+    select
+        id as order_id,
+        user_id as customer_id,
+        order_date,
+        status
+
+    from `dbt-tutorial`.jaffle_shop.orders
+
+),
+
+customer_orders as (
+
+    select
+        customer_id,
+
+        min(order_date) as first_order_date,
+        max(order_date) as most_recent_order_date,
+        count(order_id) as number_of_orders
+
+    from orders
+
+    group by 1
+
+),
+
+final as (
+
+    select
+        customers.customer_id,
+        customers.first_name,
+        customers.last_name,
+        customer_orders.first_order_date,
+        customer_orders.most_recent_order_date,
+        coalesce(customer_orders.number_of_orders, 0) as number_of_orders
+
+    from customers
+
+    left join customer_orders using (customer_id)
+
+)
+
+select * from final
+```
+
+6. Enter `dbt run` in the command prompt at the bottom of the screen. You should get a successful run and see the three models.
+Later, you can connect your business intelligence (BI) tools to these views and tables so they only read cleaned up data rather than raw data in your BI tool.
+
 ## 9. Change the way your model is materialized​
 ## 10. Delete the example models​
 ## 11. Build models on top of other models​
