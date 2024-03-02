@@ -92,10 +92,10 @@ To connect to a repository, you can either set up a dbt Cloud-hosted <a href="ht
 
 To set up a managed repository:
 
-Under "Setup a repository", select **Managed**.
-Type a name for your repo such as bbaggins-dbt-quickstart
-Click **Create**. It will take a few seconds for your repository to be created and imported.
-Once you see the "Successfully imported repository," click **Continue**.
+1. Under "Setup a repository", select **Managed**.
+2. Type a name for your repo such as bbaggins-dbt-quickstart
+3. Click **Create**. It will take a few seconds for your repository to be created and imported.
+4. Once you see the "Successfully imported repository," click **Continue**.
 
 
 
