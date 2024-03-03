@@ -511,8 +511,12 @@ As the `jaffle_shop` business gains more customers, and those customers create m
 8. Click the run and watch its progress under "Run history."
 9. Once the run is complete, click **View Documentation** to see the docs for your project.
 
-<img src="images/GCP_dbt_20.png" alt="thecodemancer_" /><p align="center">Deploy job - Lineage Graph</p>
-<img src="images/GCP_dbt_21.png" alt="thecodemancer_" /><p align="center">Deploy job - Lineage Graph</p>
+<img src="images/GCP_dbt_20.png" alt="thecodemancer_" /><p align="center">Deploy job - Job settings & Execution settings</p>
+<img src="images/GCP_dbt_21.png" alt="thecodemancer_" /><p align="center">Deploy job - Triggers & Advanced Settings</p>
+
+<img src="images/GCP_dbt_22.png" alt="thecodemancer_" /><p align="center">Production run - runs</p>
+<img src="images/GCP_dbt_23.png" alt="thecodemancer_" /><p align="center">Production run - Run #258196141</p>
+<img src="images/GCP_dbt_24.png" alt="thecodemancer_" /><p align="center">Production run - Insights</p>
 
 Congratulations 🎉! You've just deployed your first dbt project!
 
