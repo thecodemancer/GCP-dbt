@@ -467,10 +467,10 @@ models:
 
 3. Click the book icon in the Develop interface to launch documentation in a new tab.
 
-<img src="images/GCP_dbt_15.png" alt="thecodemancer_" /><p align="center">dbt documentation</p>
-<img src="images/GCP_dbt_16.png" alt="thecodemancer_" /><p align="center">dbt documentation</p>
-<img src="images/GCP_dbt_17.png" alt="thecodemancer_" /><p align="center">dbt documentation</p>
-<img src="images/GCP_dbt_18.png" alt="thecodemancer_" /><p align="center">dbt documentation</p>
+<img src="images/GCP_dbt_15.png" alt="thecodemancer_" /><p align="center">dbt documentation - Details, description and columns.</p>
+<img src="images/GCP_dbt_16.png" alt="thecodemancer_" /><p align="center">dbt documentation - Referenced By and Depends On</p>
+<img src="images/GCP_dbt_17.png" alt="thecodemancer_" /><p align="center">dbt documentation - The Code</p>
+<img src="images/GCP_dbt_18.png" alt="thecodemancer_" /><p align="center">dbt documentation - Lineage Graph</p>
 
 ## 14. Commit your changes​
 
@@ -498,16 +498,16 @@ Jobs are a set of dbt commands that you want to run on a schedule. For example, 
 
 As the `jaffle_shop` business gains more customers, and those customers create more orders, you will see more records added to your source data. Because you materialized the `customers` model as a table, you'll need to periodically rebuild your table to ensure that the data stays up-to-date. This update will happen when you run a job.
 
-1. After creating your deployment environment, you should be directed to the page for a new environment. If not, select Deploy in the upper left, then click Jobs.
-2. Click Create one and provide a name, for example, "Production run", and link to the Environment you just created.
-3. Scroll down to the Execution Settings section.
-4. Under Commands, add this command as part of your job if you don't see it:
+1. After creating your deployment environment, you should be directed to the page for a new environment. If not, select **Deploy** in the upper left, then click **Jobs**.
+2. Click **Create one** and provide a name, for example, "Production run", and link to the Environment you just created.
+3. Scroll down to the **Execution Settings** section.
+4. Under **Commands**, add this command as part of your job if you don't see it:
    - `dbt build`
-5. Select the Generate docs on run checkbox to automatically generate updated project docs each time your job runs.
-6. For this exercise, do not set a schedule for your project to run — while your organization's project should run regularly, there's no need to run this example project on a schedule. Scheduling a job is sometimes referred to as deploying a project.
-7. Select Save, then click Run now to run your job.
+5. Select the **Generate docs on run** checkbox to automatically generate updated project docs each time your job runs.
+6. For this exercise, do *not* set a schedule for your project to run — while your organization's project should run regularly, there's no need to run this example project on a schedule. Scheduling a job is sometimes referred to as *deploying* a project.
+7. Select **Save**, then click **Run now** to run your job.
 8. Click the run and watch its progress under "Run history."
-9. Once the run is complete, click View Documentation to see the docs for your project.
+9. Once the run is complete, click **View Documentation** to see the docs for your project.
 
 Congratulations 🎉! You've just deployed your first dbt project!
 
