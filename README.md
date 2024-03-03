@@ -272,6 +272,91 @@ models:
 <img src="images/GCP_dbt_12.png" alt="thecodemancer_" /><p align="center">dbt project after deleting the example files and configurations​​</p>
 
 ## 11. Build models on top of other models​
+
+As a best practice in SQL, you should separate logic that cleans up your data from logic that transforms your data. You have already started doing this in the existing query by using common table expressions (CTEs).
+
+Now you can experiment by separating the logic out into separate models and using the ref function to build models on top of other models:
+
+The DAG we want for our dbt project
+
+1. Create a new SQL file, `models/stg_customers.sql`, with the SQL from the `customers` CTE in our original query.
+
+2. Create a second new SQL file, `models/stg_orders.sql`, with the SQL from the `orders` CTE in our original query.
+
+**models/stg_customers.sql**
+```
+select
+    id as customer_id,
+    first_name,
+    last_name
+
+from `dbt-tutorial`.jaffle_shop.customers
+```
+
+**models/stg_orders.sql**
+```
+select
+    id as order_id,
+    user_id as customer_id,
+    order_date,
+    status
+
+from `dbt-tutorial`.jaffle_shop.orders
+```
+
+3. Edit the SQL in your `models/customers.sql` file as follows:
+
+**models/customers.sql**
+with customers as (
+
+    select * from {{ ref('stg_customers') }}
+
+),
+
+orders as (
+
+    select * from {{ ref('stg_orders') }}
+
+),
+
+customer_orders as (
+
+    select
+        customer_id,
+
+        min(order_date) as first_order_date,
+        max(order_date) as most_recent_order_date,
+        count(order_id) as number_of_orders
+
+    from orders
+
+    group by 1
+
+),
+
+final as (
+
+    select
+        customers.customer_id,
+        customers.first_name,
+        customers.last_name,
+        customer_orders.first_order_date,
+        customer_orders.most_recent_order_date,
+        coalesce(customer_orders.number_of_orders, 0) as number_of_orders
+
+    from customers
+
+    left join customer_orders using (customer_id)
+
+)
+
+select * from final
+
+
+4. Execute `dbt run`.
+
+This time, when you performed a `dbt run`, separate views/tables were created for `stg_customers`, `stg_orders` and `customers`. dbt inferred the order to run these models. Because `customers` depends on `stg_customers` and `stg_orders`, dbt builds `customers` last. You do not need to explicitly define these dependencies.
+
 ## 12. Add tests to your models​
 ## 13. Document your models​
 ## 14. Commit your changes​
