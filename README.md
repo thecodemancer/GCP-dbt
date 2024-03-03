@@ -492,6 +492,8 @@ Use dbt Cloud's Scheduler to deploy your production jobs confidently and build o
 5. Under **Deployment connection**, enter the name of the dataset you want to use as the target, such as "Analytics". This will allow dbt to build and work with that dataset. For some data warehouses, the target dataset may be referred to as a "schema".
 6. Click **Save**.
 
+<img src="images/GCP_dbt_19.png" alt="thecodemancer_" /><p align="center">Create new Environment</p>
+
 ### Create and run a job
 
 Jobs are a set of dbt commands that you want to run on a schedule. For example, `dbt build`.
@@ -508,6 +510,9 @@ As the `jaffle_shop` business gains more customers, and those customers create m
 7. Select **Save**, then click **Run now** to run your job.
 8. Click the run and watch its progress under "Run history."
 9. Once the run is complete, click **View Documentation** to see the docs for your project.
+
+<img src="images/GCP_dbt_20.png" alt="thecodemancer_" /><p align="center">Deploy job - Lineage Graph</p>
+<img src="images/GCP_dbt_21.png" alt="thecodemancer_" /><p align="center">Deploy job - Lineage Graph</p>
 
 Congratulations 🎉! You've just deployed your first dbt project!
 
