@@ -184,7 +184,36 @@ select * from final
 
 Later, you can connect your business intelligence (BI) tools to these views and tables so they only read cleaned up data rather than raw data in your BI tool.
 
+<img src="images/GCP_dbt_8.png" alt="thecodemancer_" /><p align="center">Query the view in BigQuery​​</p>
+
 ## 9. Change the way your model is materialized​
+
+One of the most powerful features of dbt is that you can change the way a model is materialized in your warehouse, simply by changing a configuration value. You can change things between tables and views by changing a keyword rather than writing the data definition language (DDL) to do this behind the scenes.
+
+By default, everything gets created as a view. You can override that at the directory level so everything in that directory will materialize to a different materialization.
+
+1. Edit your dbt_project.yml file.
+   - Update your project name to:
+
+```name: 'jaffle_shop'```
+
+   - Configure `jaffle_shop` so everything in it will be materialized as a table; and configure `example` so everything in it will be materialized as a view. Update your `models` config block to:
+
+```
+models:
+  jaffle_shop:
+    +materialized: table
+  example:
+    +materialized: view
+```
+
+   - Click **Save**.
+
+2. Enter the `dbt run` command. Your `customers` model should now be built as a table!
+
+<img src="images/GCP_dbt_9.png" alt="thecodemancer_" /><p align="center">Preview the data in the table in BigQuery​​</p>
+
+
 ## 10. Delete the example models​
 ## 11. Build models on top of other models​
 ## 12. Add tests to your models​
