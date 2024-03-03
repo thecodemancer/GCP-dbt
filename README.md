@@ -243,6 +243,34 @@ with customers as (
 <img src="images/GCP_dbt_11.png" alt="thecodemancer_" /><p align="center">Details of the view in BigQuery​​</p>
 
 ## 10. Delete the example models​
+
+You can now delete the files that dbt created when you initialized the project:
+
+1. Delete the `models/example/` directory.
+
+2. Delete the `example:` key from your `dbt_project.yml` file, and any configurations that are listed under it.
+
+```
+# before
+models:
+  jaffle_shop:
+    +materialized: table
+    example:
+      +materialized: view
+```
+
+```
+# after
+models:
+  jaffle_shop:
+    +materialized: table
+
+```
+
+3. Save your changes.
+
+<img src="images/GCP_dbt_12.png" alt="thecodemancer_" /><p align="center">dbt project after deleting the example files and configurations​​</p>
+
 ## 11. Build models on top of other models​
 ## 12. Add tests to your models​
 ## 13. Document your models​
