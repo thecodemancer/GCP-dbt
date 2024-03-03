@@ -213,6 +213,34 @@ models:
 
 <img src="images/GCP_dbt_9.png" alt="thecodemancer_" /><p align="center">Preview the data in the table in BigQuery​​</p>
 
+3. Edit `models/customers.sql` to override the `dbt_project.yml` for the `customers` model only by adding the following snippet to the top, and click **Save**:
+
+```
+{{
+  config(
+    materialized='view'
+  )
+}}
+
+with customers as (
+
+    select
+        id as customer_id
+        ...
+
+)
+```
+
+4. Enter the `dbt run` command. Your model, `customers`, should now build as a view.
+
+   - BigQuery users need to run `dbt run --full-refresh` instead of `dbt run` to full apply materialization changes.
+
+<img src="images/GCP_dbt_10.png" alt="thecodemancer_" /><p align="center">dbt run --full-refresh​​</p>
+
+
+5. Enter the `dbt run --full-refresh` command for this to take effect in your warehouse.
+
+<img src="images/GCP_dbt_11.png" alt="thecodemancer_" /><p align="center">Details of the view in BigQuery​​</p>
 
 ## 10. Delete the example models​
 ## 11. Build models on top of other models​
