@@ -78,7 +78,6 @@ In order to let dbt connect to your warehouse, you'll need to generate a keyfile
 <img src="images/GCP_dbt_4.png" alt="thecodemancer_" /><p align="center">Connecting dbt Cloud to BigQuery​​</p>
 <img src="images/GCP_dbt_5.png" alt="thecodemancer_" /><p align="center">Connecting dbt Cloud to BigQuery​​</p>
 
-
 4. Click **Upload a Service Account JSON File** in settings.
 5. Select the JSON file you downloaded and dbt Cloud will fill in all the necessary fields.
 6. Click **Test Connection**. This verifies that dbt Cloud can access your BigQuery account.
@@ -177,8 +176,12 @@ final as (
 
 select * from final
 ```
+<img src="images/GCP_dbt_6.png" alt="thecodemancer_" /><p align="center">customer model​​</p>
 
 6. Enter `dbt run` in the command prompt at the bottom of the screen. You should get a successful run and see the three models.
+
+<img src="images/GCP_dbt_7.png" alt="thecodemancer_" /><p align="center">dbt run​​</p>
+
 Later, you can connect your business intelligence (BI) tools to these views and tables so they only read cleaned up data rather than raw data in your BI tool.
 
 ## 9. Change the way your model is materialized​
