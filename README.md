@@ -277,7 +277,7 @@ As a best practice in SQL, you should separate logic that cleans up your data fr
 
 Now you can experiment by separating the logic out into separate models and using the ref function to build models on top of other models:
 
-The DAG we want for our dbt project
+<img src="images/GCP_dbt_13.png" alt="thecodemancer_" /><p align="center">The DAG we want for our dbt project</p>
 
 1. Create a new SQL file, `models/stg_customers.sql`, with the SQL from the `customers` CTE in our original query.
 
@@ -307,6 +307,7 @@ from `dbt-tutorial`.jaffle_shop.orders
 3. Edit the SQL in your `models/customers.sql` file as follows:
 
 **models/customers.sql**
+```
 with customers as (
 
     select * from {{ ref('stg_customers') }}
@@ -351,13 +352,65 @@ final as (
 )
 
 select * from final
-
+```
 
 4. Execute `dbt run`.
 
 This time, when you performed a `dbt run`, separate views/tables were created for `stg_customers`, `stg_orders` and `customers`. dbt inferred the order to run these models. Because `customers` depends on `stg_customers` and `stg_orders`, dbt builds `customers` last. You do not need to explicitly define these dependencies.
 
 ## 12. Add tests to your models​
+
+Adding tests to a project helps validate that your models are working correctly.
+
+To add tests to your project:
+
+1. Create a new YAML file in the `models` directory, named `models/schema.yml`
+
+2. Add the following contents to the file:
+
+**models/schema.yml**
+```
+version: 2
+
+models:
+  - name: customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+```
+
+3. Run `dbt test`, and confirm that all your tests passed.
+
+<img src="images/GCP_dbt_14.png" alt="thecodemancer_" /><p align="center">dbt test</p>
+
+When you run `dbt test`, dbt iterates through your YAML files, and constructs a query for each test. Each query will return the number of records that fail the test. If this number is 0, then the test is successful.
+
 ## 13. Document your models​
 ## 14. Commit your changes​
 ## 15. Deploy dbt​
