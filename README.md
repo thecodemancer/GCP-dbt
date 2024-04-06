@@ -1,5 +1,7 @@
 # GCP-dbt
 
+<img src="images/dbt" alt="thecodemancer_" />
+
 ## 1. Introduction
 
 In this quickstart guide, you'll learn how to use dbt Cloud with BigQuery. It will show you how to:
