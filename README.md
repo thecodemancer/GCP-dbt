@@ -1,6 +1,6 @@
 # GCP-dbt
 
-<img src="images/dbt.webp" alt="thecodemancer_" />
+<img src="images/dbt.png" alt="thecodemancer_" />
 
 ## 1. Introduction
 
